@@ -1,0 +1,2 @@
+diff: outfile3.txt: No such file or directory
+diff: ../cse-101-public-tests/pa1/model-outfile3.txt: No such file or directory
