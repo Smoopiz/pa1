@@ -259,10 +259,6 @@ void append(List L, ListElement data) {
 
         L->back->next = N;
         L->back = N;
-
-//        if (L->index >= 0) {
-//            L->index++;
-//        }
     }
 
     L-> length++;
