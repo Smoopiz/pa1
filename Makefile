@@ -1,32 +1,51 @@
-# Yuval Szwarcbord
-# yszwarcb@ucsc.ued
-# PA1
+#------------------------------------------------------------------------------
+# Makefile for CSE 101 Programming Assignment 1
+#
+# make                     makes Words
+# make ListClient          makes ListClient
+# make clean               removes all binaries
+# make checkWords          runs Words under valgrind on INFILE to OUTFILE
+# make checkListClient     runs ListClient under valgrind
+#------------------------------------------------------------------------------
 
-EXECUTABLE     = Words
-OBJECT         = Words.o List.o
-SOURCE         = Words.c List.c 
+MAIN           = Words
+MAINOBJ        = $(MAIN).o
+MAINSRC        = $(MAIN).c
+TEST           = ListClient
+TESTOBJ        = $(TEST).o
+TESTSRC        = $(TEST).c
+ADT            = List
+ADTOBJ         = $(ADT).o
+ADTSRC         = $(ADT).c
+ADT_H          = $(ADT).h
 COMPILE        = gcc -std=c17 -Wall -c
 LINK           = gcc -std=c17 -Wall -o
 REMOVE         = rm -f
-INFILE         = Holmes
-OUTFILE        = $(INFILE)-out
-MEMCHECK       = valgrind --leak-check=full 
+MEMCHECK       = valgrind --leak-check=full
+INFILE         = in4
+OUTFILE        = myout4
 
 
-$(EXECUTABLE) : $(OBJECT)
-	$(LINK) $(EXECUTABLE) $(OBJECT)
+$(MAIN) : $(MAINOBJ) $(ADTOBJ)
+	$(LINK) $(MAIN) $(MAINOBJ) $(ADTOBJ)
 
-Words.o : Words.c List.h
-	$(COMPILE) Words.c
+$(MAINOBJ) : $(ADT_H) $(MAINSRC)
+	$(COMPILE) $(MAINSRC)
 
-List.o : List.c List.h
-	$(COMPILE) List.c
+$(TEST) : $(TESTOBJ) $(ADTOBJ)
+	$(LINK) $(TEST) $(TESTOBJ) $(ADTOBJ)
 
-test : $(EXECUTABLE)
-	./$(EXECUTABLE) $(INFILE) $(OUTFILE)
+$(TESTOBJ) : $(ADT_H) $(TESTSRC)
+	$(COMPILE) $(TESTSRC)
+
+$(ADTOBJ) : $(ADT_H) $(ADTSRC)
+	$(COMPILE) $(ADTSRC)
 
 clean :
-	$(REMOVE) ./$(EXECUTABLE) $(OBJECT)
+	$(REMOVE) $(MAIN) $(MAINOBJ) $(TEST) $(TESTOBJ) $(ADTOBJ)
 
-check : $(EXECUTABLE)
-	$(MEMCHECK) ./$(EXECUTABLE) $(INFILE) $(OUTFILE)
+check$(MAIN) : $(MAIN)
+	$(MEMCHECK) $(MAIN) $(INFILE) $(OUTFILE)
+
+check$(TEST) : $(TEST)
+	$(MEMCHECK) $(TEST)

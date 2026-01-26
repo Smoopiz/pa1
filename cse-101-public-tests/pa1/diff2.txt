@@ -1,2 +1,0 @@
-diff: outfile2.txt: No such file or directory
-diff: ../cse-101-public-tests/pa1/model-outfile2.txt: No such file or directory

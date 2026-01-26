@@ -1,5 +1,5 @@
 // Yuval Szwarcbord
-// yszwarcb@ucsc.ued
+// yszwarcb
 // PA1
 // Chat GPT helped me debgud append and printList, those two functions were causing me to fail Test 1&3
 // Because it was returning in an incorrect, and it caught it by giving it the message that comes when running pa1.sh

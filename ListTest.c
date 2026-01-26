@@ -1,5 +1,5 @@
 // Yuval Szwarcbord
-// yszwarcb@ucsc.ued
+// yszwarcb
 // PA1
 
 #include <stdio.h>
